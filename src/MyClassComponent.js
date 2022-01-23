@@ -4,6 +4,18 @@ import PropTypes from 'prop-types';
 
 // 클래스형 컴포넌트에서 props사용하기
 class MyClassComponent extends Component {
+
+    // MyClassComponent의 defaultProps는 이거고, propTypes는 이거다. (꼭 static으로 선언!)
+    defaultProps = {
+        name : '기본이름'
+    };
+
+    propTypes = {
+          name : PropTypes.string
+        , favoriteNumber : PropTypes.number.isRequired
+    };
+
+
     render(){
         // props 선언(구조분해할당 적용)
         const { name, favoriteNumber, children } = this.props;
@@ -19,15 +31,8 @@ class MyClassComponent extends Component {
         );
 
     }
+
+
 }
-
-MyClassComponent.defaultProps={
-    name:"기본이름"
-};
-
-MyClassComponent.propTypes={
-    name : PropTypes.string
-    ,favoriteNumber : PropTypes.number.isRequired
-};
 
 export default MyClassComponent;
