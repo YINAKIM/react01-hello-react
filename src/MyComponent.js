@@ -1,23 +1,25 @@
 import PropTypes from 'prop-types';
 
-const MyComponent = ({ name, children }) => {
-    //const { name, children } = props; //  비구조화할당으로 name이라는 상수에 name값이 있고, children이라는 상수에 children값이 있다.
+// 함수형 컴포넌트에서 props사용하기
+const MyComponent = ({ name,favoriteNumber,children }) => {  //  props선언(구조분해할당 적용)
     return (
         <div>
             Hi, 내 이름은 {name}다. <br />
             children값은 {children}<br />
             이다.
-            <hr />
-            표현식안에 props. 을안쓰고 prop명으로 쓸 수 있다.
+            <br/>
+            제가 좋아하는 숫자는 {favoriteNumber}입니다.
         </div>
     );
 };
 
 MyComponent.defaultProps={
-    name:"이나킴"
+    name:"기본이름"
 };
 
 MyComponent.propTypes={
-    name:PropTypes.string  // name값은 무조건 string형으로 전달해야 한다.
+     name : PropTypes.string
+    ,favoriteNumber : PropTypes.number.isRequired
 };
+
 export default MyComponent;
