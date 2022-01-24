@@ -28,24 +28,19 @@ class Counter extends Component {
                 <h1>바뀌는 state값 : {number}</h1>
                 <h1>바뀌지않는 state값 : {fixedNumber}</h1>
                 <button
-                // 화살표함수로 onClick 이벤트 바인딩
                 onClick={
-                    // onClick안에 > 화살표함수안에 > this.setState() 여러개 정의 ---> 이렇게 하면 둘 다 적용된다. onClick에 바인딩 된 하나의 함수가 실행되는데 그 안에서 setState()를 여러번 할 뿐이라서
-                    // 결과 : +2씩 증가한다.
                     ()=> {
-                        // 첫번째 setState
-                       this.setState((prevState, props) => {
-                           // prevState:기존상태, props:현재 지니고 있는 props(생략가능)
+                        this.setState(
+                            // 첫번째인자 state
+                            {number: number+1}
 
-                           return { // 업데이트 하고싶은 내용{}을 반환
-                               number: prevState.number + 1
-                           }
-                       });
-
-                       // 두번째 setState : 첫번때setState와 똑같이 동작하지만, 함수에서 객체를 바로 반환하는 형태의 코드
-                       this.setState(prevState => ({
-                           number: prevState.number + 1
-                       }));
+                            // 두번째인자 callback
+                            ,()=>{
+                                console.log('방금setState가 호출되었다.');
+                                console.log(this.state);
+                                console.log(this.state.number);
+                            }
+                        );
                     }
                 }
                 >+1</button>
