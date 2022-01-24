@@ -31,8 +31,8 @@ class Counter extends Component {
                 // 화살표함수로 onClick 이벤트 바인딩
                 onClick={
                     ()=> {
-                       this.setState({ number : number+1 }); // this.setState로 새로운 값 set
-                                                                   // 클래스컴포넌트에서 state사용 : 생성자 밖에서 this.setState로 사용
+                       this.setState({ number : number + 10});
+                       this.setState({ number : this.state.number + 1 }); // this.setState를 두번사용했지만 맨 마지막에 작성된 setState가 적용된다. (this.state.number / number 어떻게 쓰던 마지막이적용됨)
                     }
                 }
                 >+1</button>
