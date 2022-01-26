@@ -10,9 +10,33 @@ const IterationSample = () => {
     ]);
 
     const [inputText,setInputText] = useState('');
+    const [nextId,setNextId] = useState(5); //새로운 항목을 추가할 때 사용할 id
 
-    const nameList = names.map(  name => <li key={name.id}>{name.text}</li> );
-    return <ul>{nameList}</ul>;
+    const onChange = e => setInputText(e.target.value);
+    const onClick = () => {
+        const nextNames = names.concat({
+            id: nextId,
+            text: inputText
+        });
+
+        setNextId(nextId+1);    // id부여(key값)
+        setNames(nextNames);          // names값 업데이트
+        setInputText('');       // input clear
+        debugger;
+
+    };
+
+    const nameList = names.map( name => <li key={name.id}>{name.text}</li> );
+
+
+    return (
+        <>
+            <input value={inputText} onChange={onChange}/>
+            <button onClick={onClick}>추가</button>
+            <hr />
+            <ul>{nameList}</ul>
+        </>
+    );
 };
 
 export default IterationSample;
